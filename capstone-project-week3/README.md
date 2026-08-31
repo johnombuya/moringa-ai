@@ -59,6 +59,25 @@ uvicorn app:app --reload --port 8000
 
 Open http://127.0.0.1:8000 and http://127.0.0.1:8000/metrics
 
+### How the console works
+
+The dashboard only **reads** Phase 1–3 artifacts (quality gate CSV, drift trend/alerts, daily costs, routing savings). It does not call OpenAI.
+
+FastAPI ≥0.115 (Starlette) requires `TemplateResponse(request, "index.html", context)`. The older call shape `(name, {"request": request, ...})` made Jinja treat the context dict as the template name and raise `TypeError: unhashable type: 'dict'`.
+
+CSV rows are loaded with `json.loads(df.to_json(orient="records"))` so Jinja (`"%.3f"|format(...)`) and Prometheus see Python `float` / `bool`, not NumPy scalars. A CSV string `"True"` is always truthy; a real bool is not.
+
+`GET /json/version` 404 is a browser or extension probe, not an app route.
+
+### Tests
+
+```powershell
+cd capstone-project-week3
+python -m unittest discover -s tests -v
+```
+
+Covers `GET /` (four sections), `GET /metrics` (`afyaplus_*` gauges), and empty artifacts (still 200, health DOWN). No live server or API key required.
+
 **Phase 5 — memo PDF:**
 
 ```powershell
