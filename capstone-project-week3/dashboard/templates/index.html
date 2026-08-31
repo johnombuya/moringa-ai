@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AfyaPlus Observability Console</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 2rem; color: #1a1a1a; background: #f7f4ee; }
+    h1, h2 { font-weight: 600; }
+    section { background: #fff; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; border: 1px solid #ddd; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid #eee; }
+    .bar { height: 1rem; background: #e6e1d6; }
+    .bar > span { display: block; height: 100%; background: #2f5d50; }
+    .up { color: #1b7f4e; font-weight: 700; }
+    .down { color: #a33; font-weight: 700; }
+    .mono { font-family: Consolas, monospace; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>AfyaPlus Observability Console</h1>
+  <p class="mono">Generative layer monitoring · coursework snapshot</p>
+
+  <section>
+    <h2>1. System Health</h2>
+    <p>Service status:
+      {% if data.health == "UP" %}<span class="up">UP</span>{% else %}<span class="down">DOWN</span>{% endif %}
+    </p>
+    <p>Exception count: {{ data.exceptions }}</p>
+  </section>
+
+  <section>
+    <h2>2. Feature Quality Matrix</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th><th>Feature</th><th>ROUGE-L</th><th>Groundedness</th>
+          <th>Judge overall</th><th>Gate</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data.quality %}
+        <tr>
+          <td>{{ row.model }}</td>
+          <td>{{ row.feature }}</td>
+          <td>{{ "%.3f"|format(row.rouge_l) }}</td>
+          <td>{{ "%.2f"|format(row.groundedness) }}</td>
+          <td>{{ "%.2f"|format(row.judge_overall) }}</td>
+          <td>{{ row.gate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h3>Current model routing</h3>
+    <table>
+      <thead><tr><th>Feature</th><th>Routed model</th><th>Optimized 30-day USD</th></tr></thead>
+      <tbody>
+        {% for row in data.routing %}
+        <tr>
+          <td>{{ row.feature }}</td>
+          <td>{{ row.routed_model }}</td>
+          <td>{{ "%.2f"|format(row.optimized_usd) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. Drift Vector Status (current month)</h2>
+    {% if current_drift %}
+    <table>
+      <thead>
+        <tr><th>Month</th><th>ROUGE-L mean</th><th>Latency ms</th><th>Input length</th>
+            <th>ROUGE drift</th><th>Latency drift</th><th>Length drift</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ current_drift.month }}</td>
+          <td>{{ current_drift.rouge_l_mean }}</td>
+          <td>{{ current_drift.latency_ms_mean }}</td>
+          <td>{{ current_drift.input_length_mean }}</td>
+          <td>{{ current_drift.rouge_l_drift }}</td>
+          <td>{{ current_drift.latency_ms_drift }}</td>
+          <td>{{ current_drift.input_length_drift }}</td>
+        </tr>
+      </tbody>
+    </table>
+    {% endif %}
+    <p>First-drift alerts:</p>
+    <ul>
+      {% for alert in data.alerts %}
+      <li>Month {{ alert.month }} · column {{ alert.column }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Budget Capital Utilisation</h2>
+    <p>Daily ${{ "%.2f"|format(data.daily_spend) }} / ${{ "%.2f"|format(data.daily_cap) }}</p>
+    <div class="bar"><span style="width: {{ daily_pct }}%"></span></div>
+    <p>Monthly ${{ "%.2f"|format(data.monthly_spend) }} / ${{ "%.2f"|format(data.monthly_cap) }}</p>
+    <div class="bar"><span style="width: {{ monthly_pct }}%"></span></div>
+  </section>
+</body>
+</html>

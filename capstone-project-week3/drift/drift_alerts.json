@@ -1,0 +1,19 @@
+{
+  "first_drift": [
+    {
+      "month": 1,
+      "column": "input_length",
+      "drift_detected": true
+    },
+    {
+      "month": 1,
+      "column": "latency_ms",
+      "drift_detected": true
+    },
+    {
+      "month": 2,
+      "column": "rouge_l",
+      "drift_detected": true
+    }
+  ]
+}
