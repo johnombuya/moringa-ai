@@ -34,6 +34,11 @@ templates = Jinja2Templates(directory=str(Path(__file__).resolve().parent / "tem
 EXCEPTION_COUNT = 0
 
 
+def _records(path: Path) -> list[dict]:
+    """Load a CSV as native Python types so Jinja and Prometheus never see NumPy scalars."""
+    return json.loads(pd.read_csv(path).to_json(orient="records"))
+
+
 def _load() -> dict:
     global EXCEPTION_COUNT
     payload = {
@@ -50,9 +55,9 @@ def _load() -> dict:
     }
     try:
         if QUALITY_GATE_CSV.exists():
-            payload["quality"] = pd.read_csv(QUALITY_GATE_CSV).to_dict(orient="records")
+            payload["quality"] = _records(QUALITY_GATE_CSV)
         if DRIFT_TREND_CSV.exists():
-            payload["drift"] = pd.read_csv(DRIFT_TREND_CSV).to_dict(orient="records")
+            payload["drift"] = _records(DRIFT_TREND_CSV)
         if DRIFT_ALERTS_JSON.exists():
             payload["alerts"] = json.loads(DRIFT_ALERTS_JSON.read_text(encoding="utf-8")).get(
                 "first_drift", []
@@ -62,7 +67,7 @@ def _load() -> dict:
             payload["monthly_spend"] = round(float(daily["usd"].sum()), 2)
             payload["daily_spend"] = round(payload["monthly_spend"] / SIMULATION_DAYS, 2)
         if SAVINGS_CSV.exists():
-            payload["routing"] = pd.read_csv(SAVINGS_CSV).to_dict(orient="records")
+            payload["routing"] = _records(SAVINGS_CSV)
         if not EVAL_RESULTS_CSV.exists():
             payload["health"] = "DOWN"
             payload["exceptions"] += 1
@@ -76,13 +81,15 @@ def _load() -> dict:
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request) -> HTMLResponse:
     data = _load()
-    daily_pct = min(100.0, 100.0 * data["daily_spend"] / DAILY_CAP_USD) if DAILY_CAP_USD else 0
-    monthly_pct = min(100.0, 100.0 * data["monthly_spend"] / MONTHLY_CAP_USD) if MONTHLY_CAP_USD else 0
+    daily_pct = float(min(100.0, 100.0 * data["daily_spend"] / DAILY_CAP_USD) if DAILY_CAP_USD else 0.0)
+    monthly_pct = float(
+        min(100.0, 100.0 * data["monthly_spend"] / MONTHLY_CAP_USD) if MONTHLY_CAP_USD else 0.0
+    )
     current_drift = data["drift"][-1] if data["drift"] else {}
     return templates.TemplateResponse(
+        request,
         "index.html",
         {
-            "request": request,
             "data": data,
             "daily_pct": daily_pct,
             "monthly_pct": monthly_pct,
