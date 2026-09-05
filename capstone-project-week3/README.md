@@ -59,6 +59,8 @@ uvicorn app:app --reload --port 8000
 
 Open http://127.0.0.1:8000 and http://127.0.0.1:8000/metrics
 
+The console is a dark card layout (health, quality, drift, budget) and still **artifact-only** — it does not call OpenAI.
+
 ### How the console works
 
 The dashboard only **reads** Phase 1–3 artifacts (quality gate CSV, drift trend/alerts, daily costs, routing savings). It does not call OpenAI.

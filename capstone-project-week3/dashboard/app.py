@@ -78,6 +78,71 @@ def _load() -> dict:
     return payload
 
 
+def _drift_chart(rows: list[dict]) -> dict:
+    """Map 3 monthly drift rows onto an inline SVG (ROUGE-L x300 vs latency/10)."""
+    width, height = 640, 220
+    pad_l, pad_r, pad_t, pad_b = 40, 16, 16, 32
+    inner_w = width - pad_l - pad_r
+    inner_h = height - pad_t - pad_b
+    y_max = 200.0
+    empty = {
+        "width": width,
+        "height": height,
+        "pad_l": pad_l,
+        "pad_t": pad_t,
+        "inner_w": inner_w,
+        "inner_h": inner_h,
+        "y_ticks": [0, 50, 100, 150, 200],
+        "rouge_line": "",
+        "rouge_area": "",
+        "latency_line": "",
+        "latency_area": "",
+        "rouge_dots": [],
+        "latency_dots": [],
+        "labels": [],
+    }
+    if not rows:
+        return empty
+
+    def _xy(values: list[float]) -> list[tuple[float, float]]:
+        n = len(values)
+        pts = []
+        for i, value in enumerate(values):
+            x = pad_l + (inner_w * i / max(n - 1, 1))
+            y = pad_t + inner_h * (1.0 - min(max(value, 0.0), y_max) / y_max)
+            pts.append((round(x, 1), round(y, 1)))
+        return pts
+
+    def _line(pts: list[tuple[float, float]]) -> str:
+        return " ".join(f"{x},{y}" for x, y in pts)
+
+    def _area(pts: list[tuple[float, float]]) -> str:
+        if not pts:
+            return ""
+        base = pad_t + inner_h
+        head, tail = pts[0], pts[-1]
+        mid = " L ".join(f"{x},{y}" for x, y in pts)
+        return f"M {head[0]},{base:.1f} L {mid} L {tail[0]},{base:.1f} Z"
+
+    rouge = _xy([float(row.get("rouge_l_mean") or 0) * 300.0 for row in rows])
+    latency = _xy([float(row.get("latency_ms_mean") or 0) / 10.0 for row in rows])
+    empty.update(
+        {
+            "rouge_line": _line(rouge),
+            "rouge_area": _area(rouge),
+            "latency_line": _line(latency),
+            "latency_area": _area(latency),
+            "rouge_dots": rouge,
+            "latency_dots": latency,
+            "labels": [
+                {"month": int(row.get("month") or i + 1), "x": rouge[i][0] if i < len(rouge) else pad_l}
+                for i, row in enumerate(rows)
+            ],
+        }
+    )
+    return empty
+
+
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request) -> HTMLResponse:
     data = _load()
@@ -86,6 +151,7 @@ def index(request: Request) -> HTMLResponse:
         min(100.0, 100.0 * data["monthly_spend"] / MONTHLY_CAP_USD) if MONTHLY_CAP_USD else 0.0
     )
     current_drift = data["drift"][-1] if data["drift"] else {}
+    quality = data["quality"]
     return templates.TemplateResponse(
         request,
         "index.html",
@@ -94,6 +160,9 @@ def index(request: Request) -> HTMLResponse:
             "daily_pct": daily_pct,
             "monthly_pct": monthly_pct,
             "current_drift": current_drift,
+            "pass_count": sum(1 for row in quality if str(row.get("gate", "")).upper() == "PASS"),
+            "fail_count": sum(1 for row in quality if str(row.get("gate", "")).upper() == "FAIL"),
+            "chart": _drift_chart(data["drift"]),
         },
     )
 
