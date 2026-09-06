@@ -60,18 +60,6 @@
       text-align: center;
       line-height: 1.2;
     }
-    .rail a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: #cfcfcf;
-      text-decoration: none;
-    }
-    .rail a.active { background: var(--pink); color: #1a1a1a; }
-    .rail a:not(.active):hover { background: #2a2a2a; }
-    .rail svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; }
     .main-wrap { min-width: 0; }
     header.top {
       display: flex;
@@ -220,24 +208,9 @@
 </head>
 <body>
   <div class="shell">
-    <aside class="rail" aria-label="Section navigation">
+    <aside class="rail" aria-label="AfyaPlus">
       <div class="brand" aria-hidden="true">A+</div>
       <div class="brand-name">AFYAPLUS</div>
-      <a class="active" href="#health" title="System Health">
-        <svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20H4z"/></svg>
-      </a>
-      <a href="#quality" title="Feature Quality">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 8v5l3 2"/></svg>
-      </a>
-      <a href="#drift" title="Drift Vector">
-        <svg viewBox="0 0 24 24"><path d="M4 16l5-5 4 3 7-8"/><path d="M15 6h5v5"/></svg>
-      </a>
-      <a href="#budget" title="Budget">
-        <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M8 12h8"/></svg>
-      </a>
-      <a href="/metrics" title="Prometheus metrics">
-        <svg viewBox="0 0 24 24"><path d="M12 5v14M6 9h12M6 15h12"/></svg>
-      </a>
     </aside>
 
     <div class="main-wrap">
