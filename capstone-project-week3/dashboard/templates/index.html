@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AfyaPlus Observability Console</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --card: #1c1c1c;
+      --line: #2a2a2a;
+      --text: #f3f3f3;
+      --muted: #9a9a9a;
+      --pink: #ff80ab;
+      --purple: #b388ff;
+      --orange: #ffb74d;
+      --green: #7dcea0;
+      --red: #ef9a9a;
+      --rail: 76px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: Inter, Segoe UI, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    a { color: inherit; }
+    .shell {
+      display: grid;
+      grid-template-columns: var(--rail) 1fr;
+      min-height: 100vh;
+    }
+    .rail {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 1.1rem 0.6rem;
+      background: #161616;
+      border-right: 1px solid var(--line);
+    }
+    .brand {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--purple), #7c4dff);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .brand-name {
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.2;
+    }
+    .rail a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #cfcfcf;
+      text-decoration: none;
+    }
+    .rail a.active { background: var(--pink); color: #1a1a1a; }
+    .rail a:not(.active):hover { background: #2a2a2a; }
+    .rail svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+    .main-wrap { min-width: 0; }
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.15rem 1.5rem 0.4rem;
+    }
+    header.top h1 { margin: 0; font-size: 1.7rem; font-weight: 650; }
+    .header-meta { display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; justify-content: flex-end; }
+    .pill {
+      border-radius: 999px;
+      padding: 0.28rem 0.7rem;
+      font-size: 0.75rem;
+      background: #2a2a2a;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .pill.up { background: #1e3a2f; color: var(--green); font-weight: 700; }
+    .pill.down { background: #3a1e1e; color: var(--red); font-weight: 700; }
+    .up { color: var(--green); font-weight: 700; }
+    .down { color: var(--red); font-weight: 700; }
+    .body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 1.1rem;
+      padding: 0.9rem 1.5rem 1.6rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 0.9rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid #262626;
+      border-radius: 18px;
+      padding: 1rem 1.05rem;
+    }
+    .card h2, .panel h2, .list-block h2 {
+      margin: 0 0 0.65rem;
+      font-size: 0.98rem;
+      font-weight: 650;
+    }
+    .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+    }
+    .icon.pink { background: #3a2430; color: var(--pink); }
+    .icon.purple { background: #2c2440; color: var(--purple); }
+    .icon.orange { background: #3a2d1d; color: var(--orange); }
+    .stat { font-size: 1.35rem; font-weight: 700; margin: 0.15rem 0; }
+    .muted, .mono { color: var(--muted); font-size: 0.82rem; }
+    .mono { font-family: Consolas, ui-monospace, monospace; }
+    ul.bullets { margin: 0.35rem 0 0; padding-left: 1.1rem; color: #c8c8c8; font-size: 0.82rem; }
+    .bar {
+      height: 8px;
+      background: #2d2d2d;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0.35rem 0 0.7rem;
+    }
+    .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--purple), var(--pink)); }
+    .panel { margin-bottom: 0.9rem; }
+    .panel h2 { margin-bottom: 0.75rem; }
+    svg.chart { width: 100%; height: auto; display: block; }
+    .legend { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem; }
+    .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.3rem; }
+    .rows { display: flex; flex-direction: column; gap: 0.55rem; }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.7rem;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid #262626;
+      border-radius: 14px;
+      padding: 0.7rem 0.85rem;
+    }
+    .row strong { display: block; font-size: 0.9rem; }
+    .tag {
+      border-radius: 999px;
+      padding: 0.22rem 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 650;
+    }
+    .tag.pass { background: #1e3a2f; color: var(--green); }
+    .tag.fail { background: #3a1e1e; color: var(--red); }
+    .tag.model { background: #2c2440; color: var(--purple); }
+    .utility { display: flex; flex-direction: column; gap: 0.85rem; }
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: #3d3360;
+      color: var(--purple);
+      flex: 0 0 auto;
+    }
+    .alert-item, .chip-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid #262626;
+      font-size: 0.82rem;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #2a2a2a;
+      border-radius: 999px;
+      padding: 0.25rem 0.55rem;
+      font-size: 0.72rem;
+    }
+    .metrics-link {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: #2a2440;
+      color: var(--purple);
+      border-radius: 12px;
+      padding: 0.65rem;
+      font-size: 0.82rem;
+    }
+    @media (max-width: 980px) {
+      .body, .cards { grid-template-columns: 1fr; }
+      .utility { order: 3; }
+    }
+    @media (max-width: 720px) {
+      .shell { grid-template-columns: 1fr; }
+      .rail { position: static; height: auto; flex-direction: row; flex-wrap: wrap; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail" aria-label="Section navigation">
+      <div class="brand" aria-hidden="true">A+</div>
+      <div class="brand-name">AFYAPLUS</div>
+      <a class="active" href="#health" title="System Health">
+        <svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20H4z"/></svg>
+      </a>
+      <a href="#quality" title="Feature Quality">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 8v5l3 2"/></svg>
+      </a>
+      <a href="#drift" title="Drift Vector">
+        <svg viewBox="0 0 24 24"><path d="M4 16l5-5 4 3 7-8"/><path d="M15 6h5v5"/></svg>
+      </a>
+      <a href="#budget" title="Budget">
+        <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M8 12h8"/></svg>
+      </a>
+      <a href="/metrics" title="Prometheus metrics">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M6 9h12M6 15h12"/></svg>
+      </a>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="top">
+        <h1>Observability</h1>
+        <div class="header-meta">
+          {% if data.health == "UP" %}
+          <span class="pill up">UP</span>
+          {% else %}
+          <span class="pill down">DOWN</span>
+          {% endif %}
+          <span class="pill">Exceptions {{ data.exceptions }}</span>
+          <span class="pill">coursework snapshot</span>
+        </div>
+      </header>
+
+      <div class="body">
+        <main>
+          <div class="cards">
+            <section class="card" id="health">
+              <div class="icon pink">+</div>
+              <h2>System Health</h2>
+              <p class="stat">
+                {% if data.health == "UP" %}<span class="up">UP</span>{% else %}<span class="down">DOWN</span>{% endif %}
+              </p>
+              <p class="muted">Exception count: {{ data.exceptions }}</p>
+            </section>
+
+            <section class="card" id="quality">
+              <div class="icon purple">Q</div>
+              <h2>Feature Quality</h2>
+              <p class="stat">{{ pass_count }} PASS / {{ fail_count }} FAIL</p>
+              <ul class="bullets">
+                <li>Judge overall ≥ 4.0</li>
+                <li>Groundedness ≥ 4.0</li>
+                <li>ROUGE-L ≥ 0.35</li>
+              </ul>
+            </section>
+
+            <section class="card" id="budget">
+              <div class="icon orange">$</div>
+              <h2>Budget Capital Utilisation</h2>
+              <p class="muted">Daily ${{ "%.2f"|format(data.daily_spend) }} / ${{ "%.2f"|format(data.daily_cap) }}</p>
+              <div class="bar"><span style="width: {{ daily_pct }}%"></span></div>
+              <p class="muted">Monthly ${{ "%.2f"|format(data.monthly_spend) }} / ${{ "%.2f"|format(data.monthly_cap) }}</p>
+              <div class="bar"><span style="width: {{ monthly_pct }}%"></span></div>
+            </section>
+          </div>
+
+          <section class="card panel" id="drift">
+            <h2>Drift Vector Status</h2>
+            {% if current_drift %}
+            <svg class="chart" viewBox="0 0 {{ chart.width }} {{ chart.height }}" role="img" aria-label="Monthly ROUGE-L and latency">
+              <defs>
+                <linearGradient id="rougeFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#b388ff" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#b388ff" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="latFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff80ab" stop-opacity="0.28"/>
+                  <stop offset="100%" stop-color="#ff80ab" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              {% for tick in chart.y_ticks %}
+              {% set y = chart.pad_t + chart.inner_h * (1 - tick / 200) %}
+              <line x1="{{ chart.pad_l }}" y1="{{ y }}" x2="{{ chart.pad_l + chart.inner_w }}" y2="{{ y }}" stroke="#2a2a2a"/>
+              <text x="8" y="{{ y + 4 }}" fill="#9a9a9a" font-size="10">{{ tick }}</text>
+              {% endfor %}
+              {% if chart.latency_area %}<path d="{{ chart.latency_area }}" fill="url(#latFill)"/>{% endif %}
+              {% if chart.rouge_area %}<path d="{{ chart.rouge_area }}" fill="url(#rougeFill)"/>{% endif %}
+              {% if chart.latency_line %}<polyline points="{{ chart.latency_line }}" fill="none" stroke="#ff80ab" stroke-width="2.2"/>{% endif %}
+              {% if chart.rouge_line %}<polyline points="{{ chart.rouge_line }}" fill="none" stroke="#b388ff" stroke-width="2.2"/>{% endif %}
+              {% for x, y in chart.latency_dots %}<circle cx="{{ x }}" cy="{{ y }}" r="3.5" fill="#ff80ab"/>{% endfor %}
+              {% for x, y in chart.rouge_dots %}<circle cx="{{ x }}" cy="{{ y }}" r="3.5" fill="#b388ff"/>{% endfor %}
+              {% for label in chart.labels %}
+              <text x="{{ label.x }}" y="{{ chart.height - 8 }}" fill="#9a9a9a" font-size="11" text-anchor="middle">M{{ label.month }}</text>
+              {% endfor %}
+            </svg>
+            <p class="legend">
+              <span><i class="swatch" style="background:#b388ff"></i>ROUGE-L × 300</span>
+              <span><i class="swatch" style="background:#ff80ab"></i>Latency ms / 10</span>
+              <span>Month {{ current_drift.month }} · ROUGE {{ current_drift.rouge_l_mean }} · {{ current_drift.latency_ms_mean }} ms</span>
+            </p>
+            {% else %}
+            <p class="muted">No drift trend yet. Tables stay empty until Phase 2 CSVs exist.</p>
+            {% endif %}
+          </section>
+
+          <section class="list-block" aria-labelledby="quality-matrix">
+            <h2 id="quality-matrix">Feature Quality Matrix</h2>
+            <div class="rows">
+              {% for row in data.quality %}
+              <article class="row">
+                <div>
+                  <strong>{{ row.feature }}</strong>
+                  <span class="muted">{{ row.model }} · ROUGE-L {{ "%.3f"|format(row.rouge_l) }} · grounded {{ "%.2f"|format(row.groundedness) }} · judge {{ "%.2f"|format(row.judge_overall) }}</span>
+                </div>
+                <span class="tag {% if row.gate == 'PASS' %}pass{% else %}fail{% endif %}">{{ row.gate }}</span>
+              </article>
+              {% endfor %}
+            </div>
+          </section>
+        </main>
+
+        <aside class="utility">
+          <section class="card">
+            <h2>First-drift alerts</h2>
+            {% if data.alerts %}
+              {% for alert in data.alerts %}
+              <div class="alert-item">
+                <div class="avatar">M{{ alert.month }}</div>
+                <div>
+                  <strong>{{ alert.column }}</strong>
+                  <div class="muted">Month {{ alert.month }} · first detected</div>
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="muted">No first-drift alerts.</p>
+            {% endif %}
+          </section>
+
+          <section class="card">
+            <h2>Current month flags</h2>
+            {% if current_drift %}
+            <div class="chips">
+              <span class="chip">ROUGE {{ current_drift.rouge_l_drift }}</span>
+              <span class="chip">Latency {{ current_drift.latency_ms_drift }}</span>
+              <span class="chip">Length {{ current_drift.input_length_drift }}</span>
+            </div>
+            {% else %}
+            <p class="muted">No current month row.</p>
+            {% endif %}
+          </section>
+
+          <section class="card">
+            <h2>Current model routing</h2>
+            {% for row in data.routing %}
+            <div class="chip-row">
+              <div class="avatar">{{ row.feature[:2]|upper }}</div>
+              <div>
+                <strong>{{ row.feature }}</strong>
+                <div class="muted">{{ row.routed_model }} · ${{ "%.2f"|format(row.optimized_usd) }}</div>
+              </div>
+              <span class="tag model">{{ row.routed_model }}</span>
+            </div>
+            {% endfor %}
+          </section>
+
+          <a class="metrics-link" href="/metrics">GET /metrics · afyaplus_* gauges</a>
+        </aside>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+model,feature,rouge_l,groundedness,judge_overall,bleu_4,token_f1,relevance,helpfulness,correctness,gate,overall_min,groundedness_min,rouge_l_min
+gpt-4o,chronic_care_referral,1.0,5.0,4.8,1.0,1.0,4.0,5.0,5.0,PASS,4.0,4.0,0.35
+gpt-4o,insurance_routing,1.0,5.0,4.84,1.0,1.0,4.2,5.0,5.0,PASS,4.0,4.0,0.35
+gpt-4o,pediatric_triage,1.0,5.0,4.8,1.0,1.0,4.0,5.0,5.0,PASS,4.0,4.0,0.35
+gpt-4o-mini,chronic_care_referral,0.58298,4.4,3.9799999999999995,0.26862,0.5790200000000001,4.0,3.8,3.8,FAIL,4.0,4.0,0.35
+gpt-4o-mini,insurance_routing,0.62312,4.4,4.24,0.32767999999999997,0.61744,4.2,4.2,4.2,PASS,4.0,4.0,0.35
+gpt-4o-mini,pediatric_triage,0.7398,4.6,4.4799999999999995,0.53952,0.74258,4.0,4.6,4.6,PASS,4.0,4.0,0.35
