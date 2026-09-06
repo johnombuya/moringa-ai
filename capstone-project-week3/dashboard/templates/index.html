@@ -8,7 +8,6 @@
     :root {
       --bg: #121212;
       --card: #1c1c1c;
-      --card-2: #242424;
       --line: #2a2a2a;
       --text: #f3f3f3;
       --muted: #9a9a9a;
@@ -75,33 +74,13 @@
     .rail svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; }
     .main-wrap { min-width: 0; }
     header.top {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 1rem;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      gap: 1rem;
       padding: 1.15rem 1.5rem 0.4rem;
     }
     header.top h1 { margin: 0; font-size: 1.7rem; font-weight: 650; }
-    .search {
-      justify-self: center;
-      width: min(420px, 100%);
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      background: #1a1a1a;
-      border: 1px solid #2d2d2d;
-      border-radius: 999px;
-      padding: 0.55rem 0.9rem;
-      color: var(--muted);
-    }
-    .search input {
-      border: 0;
-      outline: 0;
-      background: transparent;
-      color: var(--text);
-      width: 100%;
-      font: inherit;
-    }
     .header-meta { display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; justify-content: flex-end; }
     .pill {
       border-radius: 999px;
@@ -163,22 +142,14 @@
     }
     .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--purple), var(--pink)); }
     .panel { margin-bottom: 0.9rem; }
-    .panel-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 0.8rem;
-      margin-bottom: 0.4rem;
-    }
-    .tabs { display: flex; gap: 1rem; color: var(--muted); font-size: 0.82rem; }
-    .tabs .on { color: var(--purple); border-bottom: 2px solid var(--purple); padding-bottom: 2px; }
+    .panel h2 { margin-bottom: 0.75rem; }
     svg.chart { width: 100%; height: auto; display: block; }
     .legend { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem; }
     .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.3rem; }
     .rows { display: flex; flex-direction: column; gap: 0.55rem; }
     .row {
       display: grid;
-      grid-template-columns: 1fr auto auto;
+      grid-template-columns: 1fr auto;
       gap: 0.7rem;
       align-items: center;
       background: var(--card);
@@ -197,14 +168,6 @@
     .tag.fail { background: #3a1e1e; color: var(--red); }
     .tag.model { background: #2c2440; color: var(--purple); }
     .utility { display: flex; flex-direction: column; gap: 0.85rem; }
-    .person {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      background: #2a2440;
-      border-radius: 14px;
-      padding: 0.7rem 0.8rem;
-    }
     .avatar {
       width: 34px;
       height: 34px;
@@ -246,9 +209,8 @@
       font-size: 0.82rem;
     }
     @media (max-width: 980px) {
-      .body, .cards, header.top { grid-template-columns: 1fr; }
+      .body, .cards { grid-template-columns: 1fr; }
       .utility { order: 3; }
-      .search { justify-self: stretch; }
     }
     @media (max-width: 720px) {
       .shell { grid-template-columns: 1fr; }
@@ -281,10 +243,6 @@
     <div class="main-wrap">
       <header class="top">
         <h1>Observability</h1>
-        <label class="search">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input type="search" placeholder="Search..." aria-label="Search" disabled />
-        </label>
         <div class="header-meta">
           {% if data.health == "UP" %}
           <span class="pill up">UP</span>
@@ -305,11 +263,7 @@
               <p class="stat">
                 {% if data.health == "UP" %}<span class="up">UP</span>{% else %}<span class="down">DOWN</span>{% endif %}
               </p>
-              <ul class="bullets">
-                <li>Reads Phase 1–3 artifacts only</li>
-                <li>Exception count: {{ data.exceptions }}</li>
-                <li>No live model calls from this console</li>
-              </ul>
+              <p class="muted">Exception count: {{ data.exceptions }}</p>
             </section>
 
             <section class="card" id="quality">
@@ -334,14 +288,7 @@
           </div>
 
           <section class="card panel" id="drift">
-            <div class="panel-head">
-              <h2>Drift Vector Status</h2>
-              <div class="tabs" aria-label="Range">
-                <span>Daily</span>
-                <span>Weekly</span>
-                <span class="on">Monthly</span>
-              </div>
-            </div>
+            <h2>Drift Vector Status</h2>
             {% if current_drift %}
             <svg class="chart" viewBox="0 0 {{ chart.width }} {{ chart.height }}" role="img" aria-label="Monthly ROUGE-L and latency">
               <defs>
@@ -388,7 +335,6 @@
                   <strong>{{ row.feature }}</strong>
                   <span class="muted">{{ row.model }} · ROUGE-L {{ "%.3f"|format(row.rouge_l) }} · grounded {{ "%.2f"|format(row.groundedness) }} · judge {{ "%.2f"|format(row.judge_overall) }}</span>
                 </div>
-                <span class="muted mono">{{ "%.2f"|format(row.judge_overall) }}</span>
                 <span class="tag {% if row.gate == 'PASS' %}pass{% else %}fail{% endif %}">{{ row.gate }}</span>
               </article>
               {% endfor %}

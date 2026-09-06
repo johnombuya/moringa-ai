@@ -1,4 +1,6 @@
 .env
+executive_summary.md
+generate_executive_pdf.py
 .venv/
 venv/
 __pycache__/
