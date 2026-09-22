@@ -1,0 +1,4 @@
+feature,all_gpt4o_usd,routed_model,optimized_usd,canary_usd,savings_vs_all_gpt4o_usd,savings_vs_canary_usd
+chronic_care_referral,29.9864,gpt-4o,28.8711,8.392800000000001,1.1153,-20.4783
+insurance_routing,30.024,gpt-4o-mini,1.1269,8.4075,28.8971,7.2806
+pediatric_triage,30.0776,gpt-4o-mini,1.1269,8.4184,28.9507,7.2915

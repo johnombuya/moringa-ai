@@ -1,0 +1,201 @@
+question,input_length,rouge_l,latency_ms,token_count
+How long does it take to process outpatient laboratory results?,15,0.4257,793.0,181
+What documents do I need for a standard clinical lab screening?,15,0.3687,734.0,304
+What documents do I need for a standard clinical lab screening?,9,0.3618,719.0,199
+Can I book an inpatient clinical appointment online?,14,0.3977,707.0,207
+My infant has a sudden rash and high fever - what are my triage options?,11,0.4625,713.0,227
+How long does it take to process outpatient laboratory results?,15,0.3989,891.0,205
+What documents do I need for a standard clinical lab screening?,8,0.4451,706.0,184
+What documents do I need for a standard clinical lab screening?,8,0.3492,648.0,236
+Can I book an inpatient clinical appointment online?,11,0.3925,708.0,239
+How long does it take to process outpatient laboratory results?,9,0.296,655.0,208
+Has the new MoH policy changed our clinical referral rules?,13,0.4831,851.0,197
+Has the new MoH policy changed our clinical referral rules?,11,0.354,869.0,167
+What documents do I need for a standard clinical lab screening?,9,0.4374,799.0,163
+Has the new MoH policy changed our clinical referral rules?,8,0.4489,909.0,161
+What documents do I need for a standard clinical lab screening?,8,0.2976,930.0,173
+Can I book an inpatient clinical appointment online?,9,0.317,831.0,249
+How long does it take to process outpatient laboratory results?,14,0.4999,877.0,295
+My infant has a sudden rash and high fever - what are my triage options?,15,0.4106,787.0,289
+Can I book an inpatient clinical appointment online?,11,0.5124,1016.0,171
+How long does it take to process outpatient laboratory results?,13,0.4528,890.0,282
+What documents do I need for a standard clinical lab screening?,12,0.4725,890.0,255
+How long does it take to process outpatient laboratory results?,14,0.427,624.0,171
+How long does it take to process outpatient laboratory results?,8,0.3822,679.0,287
+My infant has a sudden rash and high fever - what are my triage options?,10,0.478,848.0,271
+What documents do I need for a standard clinical lab screening?,12,0.4106,842.0,261
+My infant has a sudden rash and high fever - what are my triage options?,8,0.413,677.0,186
+How long does it take to process outpatient laboratory results?,8,0.406,1018.0,247
+Can I book an inpatient clinical appointment online?,11,0.4224,825.0,179
+Can I book an inpatient clinical appointment online?,12,0.3559,803.0,268
+What documents do I need for a standard clinical lab screening?,11,0.4356,863.0,249
+Has the new MoH policy changed our clinical referral rules?,14,0.4039,930.0,183
+How long does it take to process outpatient laboratory results?,14,0.4119,727.0,291
+What documents do I need for a standard clinical lab screening?,12,0.4272,862.0,240
+My infant has a sudden rash and high fever - what are my triage options?,14,0.4034,683.0,245
+What documents do I need for a standard clinical lab screening?,11,0.4209,798.0,165
+My infant has a sudden rash and high fever - what are my triage options?,10,0.3848,751.0,238
+My infant has a sudden rash and high fever - what are my triage options?,15,0.3899,847.0,230
+What documents do I need for a standard clinical lab screening?,10,0.3859,978.0,305
+Has the new MoH policy changed our clinical referral rules?,14,0.4259,692.0,211
+Can I book an inpatient clinical appointment online?,15,0.4115,823.0,270
+Can I book an inpatient clinical appointment online?,12,0.4707,526.0,240
+My infant has a sudden rash and high fever - what are my triage options?,15,0.3536,778.0,246
+My infant has a sudden rash and high fever - what are my triage options?,14,0.3653,784.0,160
+How long does it take to process outpatient laboratory results?,11,0.3932,1030.0,272
+Has the new MoH policy changed our clinical referral rules?,11,0.4977,810.0,254
+How long does it take to process outpatient laboratory results?,13,0.5689,914.0,208
+How long does it take to process outpatient laboratory results?,11,0.4584,780.0,236
+Can I book an inpatient clinical appointment online?,8,0.4116,851.0,189
+My infant has a sudden rash and high fever - what are my triage options?,9,0.4268,867.0,167
+How long does it take to process outpatient laboratory results?,8,0.3609,661.0,304
+Can I book an inpatient clinical appointment online?,14,0.4142,744.0,232
+How long does it take to process outpatient laboratory results?,15,0.3897,756.0,188
+Can I book an inpatient clinical appointment online?,10,0.4239,709.0,173
+Has the new MoH policy changed our clinical referral rules?,9,0.3154,605.0,258
+How long does it take to process outpatient laboratory results?,10,0.399,809.0,205
+Has the new MoH policy changed our clinical referral rules?,14,0.4574,698.0,296
+How long does it take to process outpatient laboratory results?,15,0.3553,852.0,302
+How long does it take to process outpatient laboratory results?,9,0.2849,633.0,243
+My infant has a sudden rash and high fever - what are my triage options?,12,0.3821,775.0,172
+How long does it take to process outpatient laboratory results?,11,0.4625,746.0,184
+Can I book an inpatient clinical appointment online?,13,0.4339,651.0,286
+Can I book an inpatient clinical appointment online?,8,0.4026,995.0,274
+My infant has a sudden rash and high fever - what are my triage options?,15,0.513,795.0,269
+What documents do I need for a standard clinical lab screening?,11,0.3562,737.0,199
+My infant has a sudden rash and high fever - what are my triage options?,11,0.4378,752.0,292
+My infant has a sudden rash and high fever - what are my triage options?,9,0.4818,878.0,288
+My infant has a sudden rash and high fever - what are my triage options?,9,0.316,785.0,165
+Has the new MoH policy changed our clinical referral rules?,8,0.3814,802.0,294
+How long does it take to process outpatient laboratory results?,11,0.4015,866.0,284
+Can I book an inpatient clinical appointment online?,10,0.4103,869.0,179
+What documents do I need for a standard clinical lab screening?,11,0.4924,854.0,216
+Can I book an inpatient clinical appointment online?,15,0.4056,923.0,191
+How long does it take to process outpatient laboratory results?,8,0.4206,918.0,298
+My infant has a sudden rash and high fever - what are my triage options?,8,0.4245,781.0,230
+My infant has a sudden rash and high fever - what are my triage options?,9,0.2635,862.0,283
+My infant has a sudden rash and high fever - what are my triage options?,10,0.4326,873.0,230
+My infant has a sudden rash and high fever - what are my triage options?,10,0.3744,971.0,168
+My infant has a sudden rash and high fever - what are my triage options?,13,0.4099,865.0,254
+Has the new MoH policy changed our clinical referral rules?,9,0.4166,710.0,203
+My infant has a sudden rash and high fever - what are my triage options?,14,0.3418,792.0,160
+Has the new MoH policy changed our clinical referral rules?,8,0.4562,824.0,225
+What documents do I need for a standard clinical lab screening?,14,0.4212,888.0,255
+My infant has a sudden rash and high fever - what are my triage options?,10,0.3579,942.0,205
+My infant has a sudden rash and high fever - what are my triage options?,13,0.4322,871.0,250
+Can I book an inpatient clinical appointment online?,10,0.4215,901.0,308
+Has the new MoH policy changed our clinical referral rules?,12,0.3398,856.0,166
+My infant has a sudden rash and high fever - what are my triage options?,13,0.4402,787.0,273
+My infant has a sudden rash and high fever - what are my triage options?,9,0.484,1017.0,205
+My infant has a sudden rash and high fever - what are my triage options?,13,0.4045,859.0,182
+My infant has a sudden rash and high fever - what are my triage options?,12,0.4165,911.0,236
+What documents do I need for a standard clinical lab screening?,13,0.3735,774.0,230
+Can I book an inpatient clinical appointment online?,10,0.427,894.0,178
+What documents do I need for a standard clinical lab screening?,13,0.4478,862.0,293
+How long does it take to process outpatient laboratory results?,14,0.385,638.0,189
+My infant has a sudden rash and high fever - what are my triage options?,9,0.3589,826.0,291
+How long does it take to process outpatient laboratory results?,14,0.441,857.0,180
+Has the new MoH policy changed our clinical referral rules?,15,0.4305,888.0,242
+My infant has a sudden rash and high fever - what are my triage options?,14,0.301,824.0,303
+How long does it take to process outpatient laboratory results?,13,0.4623,951.0,238
+How long does it take to process outpatient laboratory results?,11,0.4343,762.0,263
+My infant has a sudden rash and high fever - what are my triage options?,15,0.4593,759.0,186
+Has the new MoH policy changed our clinical referral rules?,14,0.3623,927.0,288
+My infant has a sudden rash and high fever - what are my triage options?,11,0.4151,736.0,282
+How long does it take to process outpatient laboratory results?,11,0.4371,715.0,297
+Has the new MoH policy changed our clinical referral rules?,15,0.3479,798.0,195
+My infant has a sudden rash and high fever - what are my triage options?,8,0.3411,982.0,232
+My infant has a sudden rash and high fever - what are my triage options?,13,0.4306,833.0,229
+Can I book an inpatient clinical appointment online?,10,0.4827,770.0,221
+How long does it take to process outpatient laboratory results?,14,0.3778,813.0,165
+How long does it take to process outpatient laboratory results?,11,0.4823,811.0,280
+My infant has a sudden rash and high fever - what are my triage options?,14,0.3543,795.0,228
+Has the new MoH policy changed our clinical referral rules?,10,0.4213,965.0,189
+Can I book an inpatient clinical appointment online?,12,0.3807,978.0,255
+What documents do I need for a standard clinical lab screening?,15,0.4316,827.0,180
+Can I book an inpatient clinical appointment online?,15,0.3896,666.0,267
+Has the new MoH policy changed our clinical referral rules?,12,0.3962,754.0,186
+How long does it take to process outpatient laboratory results?,12,0.4497,840.0,160
+Has the new MoH policy changed our clinical referral rules?,8,0.4066,994.0,310
+My infant has a sudden rash and high fever - what are my triage options?,13,0.4587,957.0,204
+Can I book an inpatient clinical appointment online?,9,0.4399,877.0,224
+My infant has a sudden rash and high fever - what are my triage options?,10,0.445,671.0,296
+Has the new MoH policy changed our clinical referral rules?,15,0.452,984.0,222
+My infant has a sudden rash and high fever - what are my triage options?,14,0.3524,794.0,200
+What documents do I need for a standard clinical lab screening?,12,0.4667,780.0,292
+How long does it take to process outpatient laboratory results?,12,0.3606,870.0,194
+What documents do I need for a standard clinical lab screening?,8,0.3982,800.0,225
+How long does it take to process outpatient laboratory results?,13,0.4986,809.0,163
+What documents do I need for a standard clinical lab screening?,8,0.3653,791.0,289
+Can I book an inpatient clinical appointment online?,14,0.4791,802.0,242
+My infant has a sudden rash and high fever - what are my triage options?,12,0.4119,810.0,198
+Can I book an inpatient clinical appointment online?,14,0.4959,565.0,222
+How long does it take to process outpatient laboratory results?,13,0.4107,896.0,191
+My infant has a sudden rash and high fever - what are my triage options?,8,0.3908,932.0,166
+Has the new MoH policy changed our clinical referral rules?,8,0.4581,850.0,220
+Has the new MoH policy changed our clinical referral rules?,13,0.4449,832.0,187
+Has the new MoH policy changed our clinical referral rules?,15,0.2875,664.0,307
+My infant has a sudden rash and high fever - what are my triage options?,9,0.3918,792.0,198
+My infant has a sudden rash and high fever - what are my triage options?,8,0.367,1090.0,245
+How long does it take to process outpatient laboratory results?,13,0.3894,780.0,300
+My infant has a sudden rash and high fever - what are my triage options?,10,0.4042,710.0,233
+How long does it take to process outpatient laboratory results?,14,0.33,736.0,183
+How long does it take to process outpatient laboratory results?,14,0.4309,675.0,200
+Can I book an inpatient clinical appointment online?,12,0.37,890.0,214
+What documents do I need for a standard clinical lab screening?,8,0.3942,860.0,192
+My infant has a sudden rash and high fever - what are my triage options?,9,0.403,988.0,285
+Can I book an inpatient clinical appointment online?,14,0.4475,1033.0,301
+Can I book an inpatient clinical appointment online?,12,0.3486,718.0,164
+How long does it take to process outpatient laboratory results?,15,0.3439,767.0,174
+Can I book an inpatient clinical appointment online?,9,0.4049,748.0,187
+How long does it take to process outpatient laboratory results?,10,0.366,1071.0,214
+How long does it take to process outpatient laboratory results?,10,0.4543,766.0,280
+Has the new MoH policy changed our clinical referral rules?,8,0.2774,668.0,300
+What documents do I need for a standard clinical lab screening?,8,0.2975,689.0,190
+Has the new MoH policy changed our clinical referral rules?,15,0.4745,865.0,273
+What documents do I need for a standard clinical lab screening?,15,0.365,878.0,169
+How long does it take to process outpatient laboratory results?,11,0.438,882.0,303
+Has the new MoH policy changed our clinical referral rules?,9,0.3539,690.0,240
+Can I book an inpatient clinical appointment online?,10,0.4143,856.0,306
+My infant has a sudden rash and high fever - what are my triage options?,12,0.4113,883.0,192
+What documents do I need for a standard clinical lab screening?,15,0.4738,710.0,175
+Can I book an inpatient clinical appointment online?,10,0.3835,935.0,280
+My infant has a sudden rash and high fever - what are my triage options?,11,0.3196,801.0,299
+My infant has a sudden rash and high fever - what are my triage options?,10,0.4584,987.0,217
+Can I book an inpatient clinical appointment online?,10,0.3737,751.0,259
+Has the new MoH policy changed our clinical referral rules?,10,0.4081,1011.0,206
+What documents do I need for a standard clinical lab screening?,12,0.4149,908.0,269
+My infant has a sudden rash and high fever - what are my triage options?,12,0.4075,807.0,239
+Has the new MoH policy changed our clinical referral rules?,15,0.4425,885.0,300
+Has the new MoH policy changed our clinical referral rules?,8,0.4825,779.0,175
+Has the new MoH policy changed our clinical referral rules?,15,0.4112,754.0,247
+Has the new MoH policy changed our clinical referral rules?,13,0.4282,796.0,210
+My infant has a sudden rash and high fever - what are my triage options?,9,0.3093,908.0,288
+Can I book an inpatient clinical appointment online?,8,0.4225,674.0,292
+Has the new MoH policy changed our clinical referral rules?,15,0.4512,839.0,216
+My infant has a sudden rash and high fever - what are my triage options?,9,0.3903,586.0,192
+Can I book an inpatient clinical appointment online?,9,0.3312,747.0,305
+Has the new MoH policy changed our clinical referral rules?,9,0.3617,826.0,247
+How long does it take to process outpatient laboratory results?,8,0.4407,903.0,175
+How long does it take to process outpatient laboratory results?,12,0.286,710.0,297
+Can I book an inpatient clinical appointment online?,15,0.3926,690.0,215
+Has the new MoH policy changed our clinical referral rules?,14,0.3762,864.0,266
+How long does it take to process outpatient laboratory results?,13,0.3999,861.0,292
+Can I book an inpatient clinical appointment online?,11,0.4695,736.0,254
+My infant has a sudden rash and high fever - what are my triage options?,8,0.3319,845.0,216
+Can I book an inpatient clinical appointment online?,11,0.4246,645.0,227
+What documents do I need for a standard clinical lab screening?,12,0.3161,702.0,188
+Can I book an inpatient clinical appointment online?,15,0.4235,865.0,222
+Has the new MoH policy changed our clinical referral rules?,9,0.4429,1118.0,172
+Has the new MoH policy changed our clinical referral rules?,13,0.3701,867.0,215
+What documents do I need for a standard clinical lab screening?,9,0.3584,1074.0,240
+My infant has a sudden rash and high fever - what are my triage options?,8,0.3734,921.0,238
+Has the new MoH policy changed our clinical referral rules?,11,0.4381,678.0,166
+Has the new MoH policy changed our clinical referral rules?,8,0.4461,1030.0,301
+What documents do I need for a standard clinical lab screening?,13,0.3846,775.0,240
+My infant has a sudden rash and high fever - what are my triage options?,11,0.3911,921.0,185
+Has the new MoH policy changed our clinical referral rules?,10,0.391,861.0,206
+What documents do I need for a standard clinical lab screening?,15,0.4764,957.0,179
+My infant has a sudden rash and high fever - what are my triage options?,12,0.4515,865.0,285
+How long does it take to process outpatient laboratory results?,15,0.4088,860.0,205
+Can I book an inpatient clinical appointment online?,11,0.4246,982.0,242

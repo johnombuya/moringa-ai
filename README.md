@@ -13,12 +13,14 @@ This repository is a course monorepo. Each week’s labs and both capstones live
 | [`week2/`](week2/) | Week 2 labs (LangChain agents, LlamaIndex RAG, tools, PII masking, MCP) |
 | [`capstone-project-week2/`](capstone-project-week2/) | AfyaPlus Enterprise RAG Agent — masking, grounded retrieval, tool calling, session memory |
 | [`week3/`](week3/) | Evaluation (BLEU/ROUGE/F1, LLM-as-judge), drift (Evidently), cost labs |
+| [`capstone-project-week3/`](capstone-project-week3/) | AfyaPlus observability — evaluation, drift, cost, FastAPI dashboard |
 | [`week4/`](week4/) | Fine-tuning data preparation (JSONL / instruction format) |
 
 ## Capstones
 
 - **Week 1:** see [`capstone-project-week1/README.md`](capstone-project-week1/README.md). Run from that folder after copying `.env.example` to `.env`.
 - **Week 2:** see [`capstone-project-week2/README.md`](capstone-project-week2/README.md). Dedicated GitHub repo and PR: [johnombuya/capstone-project-week2](https://github.com/johnombuya/capstone-project-week2) ([PR #1](https://github.com/johnombuya/capstone-project-week2/pull/1)).
+- **Week 3:** see [`capstone-project-week3/README.md`](capstone-project-week3/README.md). Dedicated repo: [johnombuya/capstone-project-week3](https://github.com/johnombuya/capstone-project-week3) ([PR #1](https://github.com/johnombuya/capstone-project-week3/pull/1)).
 
 ## Setup
 

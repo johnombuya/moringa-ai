@@ -1,0 +1,4 @@
+month,rouge_l_mean,latency_ms_mean,input_length_mean,rouge_l_drift,latency_ms_drift,input_length_drift
+1,0.4064,822.2,11.47,False,True,True
+2,0.3653,951.0,13.59,True,True,True
+3,0.3389,1101.6,16.82,True,True,True
