@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pydantic
+PyJWT
+bcrypt
+python-dotenv
+openai
+langchain
+langchain-openai
+langgraph
+langchain-mcp-adapters
+mcp
+httpx
