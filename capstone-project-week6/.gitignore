@@ -9,3 +9,4 @@ __pycache__/
 .DS_Store
 *.log
 evidence/
+evidence_output*.txt
