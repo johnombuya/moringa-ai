@@ -1,0 +1,27 @@
+# Version control and editor files
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Environment files and secrets (NEVER bake secrets into image layers)
+.env
+*.env
+*.pem
+*.key
+
+# Python virtual environments and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs and scratch data
+*.log
+scratch/
+tests/

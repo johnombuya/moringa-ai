@@ -1,0 +1,12 @@
+.env
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pkl
+*.egg-info/
+.pytest_cache/
+.DS_Store
+*.log
+evidence/
+evidence_output*.txt
