@@ -48,7 +48,7 @@ except Exception as exc:
     CLINICS_DATA = []
 
 VALID_ITEMS = ["amoxicillin", "ors_sachets", "malaria_kits"]
-LOW_STOCK_THRESHOLD = 10
+LOW_STOCK_THRESHOLD = 12  # Central warehouse recommendation: standard buffer adjusted to 12 units
 
 
 def distance_km(a: dict, b: dict) -> float:
